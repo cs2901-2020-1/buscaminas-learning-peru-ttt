@@ -16,5 +16,12 @@ public class Main {
             y = scanner.nextInt();
 
         } while (buscamina.jugar(x, y) && buscamina.casillerosRestantes());
+
+        if (!buscamina.casillerosRestantes()) {
+            System.out.println("Ganaste :D");
+        } else {
+            System.out.println("Perdiste :(");
+        }
+
     }
 }

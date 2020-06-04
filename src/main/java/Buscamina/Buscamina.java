@@ -7,7 +7,7 @@ public class Buscamina {
     private int N;
     private int Minas;
     private int Turno = 0;
-    private Casillero[][] Matrix = new Casillero [N+2][N+2];
+    private Casillero[][] Matrix;
     Random rand = new Random();
 
     public int getMinas() {
@@ -27,9 +27,11 @@ public class Buscamina {
 
     public void setJuego() {
         for (int i = 0; i < Minas; ++i) {
+            //Scanner scanner = new Scanner(System.in);
             int x;
             do {
                 x = rand.nextInt(N * N);
+                //System.out.print("x = " + (1 + x/N) + " y = " + (1 + x%N));
             } while (Matrix[1 + x/N][1 + x%N].isMina());
 
             Matrix[1 + x/N][1 + x%N].setMina();
@@ -43,19 +45,45 @@ public class Buscamina {
         return true;
     }
 
+    public void inicializar() {
+        Matrix = new Casillero[N+2][N+2];
+        for (int i = 0; i < N+2; ++i) {
+            for (int j = 0; j < N+2; ++j) {
+                Matrix[i][j] = new Casillero();
+            }
+        }
+    }
+
     public void empezarJuego() {
-        System.out.println("Inserte la cantidad de columnas y filas que desea = ");
+        System.out.print("Inserte la cantidad de columnas y filas que desea = ");
 
         Scanner scanner = new Scanner(System.in);
         N = scanner.nextInt();
 
-        System.out.println("Inserte la cantidad de minas que desea = ");
+        System.out.print("Inserte la cantidad de minas que desea = ");
         do {
             Minas = scanner.nextInt();
         } while (Minas > N*N || Minas < 0);
 
+        inicializar();
+
         setJuego();
 
+    }
+
+    public void print() {
+        for (int i = 1; i < N + 1; ++i) {
+            for (int j = 1; j < N + 1; ++j) {
+                if (!Matrix[i][j].isActivado()) {
+                    System.out.print("X ");
+                }
+                else {
+                    System.out.print(Matrix[i][j].getMinasCerca());
+                    System.out.print(" ");
+                }
+            }
+            System.out.print("\n");
+        }
     }
 
     public boolean jugar(int x, int y) {
@@ -70,6 +98,7 @@ public class Buscamina {
         //TODO: Activar ceros
         //activarCeros(x, y);
 
+        print();
         Turno++;
         return true;
     }

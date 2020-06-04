@@ -24,4 +24,8 @@ public class Casillero {
     public void aumentarMinasCercanas() {
         minasCerca++;
     }
+
+    public int getMinasCerca() {
+        return minasCerca;
+    }
 }

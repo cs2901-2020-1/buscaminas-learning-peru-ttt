@@ -7,7 +7,6 @@ public class Main {
         Buscamina buscamina = new Buscamina();
         buscamina.empezarJuego();
         int x, y, Minas;
-
         do {
             System.out.println("Inserte X y Y = ");
 
@@ -15,9 +14,9 @@ public class Main {
             x = scanner.nextInt();
             y = scanner.nextInt();
 
-        } while (buscamina.jugar(x, y) && buscamina.casillerosRestantes());
+        } while (buscamina.jugar(x, y) && buscamina.Ganador());
 
-        if (!buscamina.casillerosRestantes()) {
+        if (!buscamina.Ganador()) {
             System.out.println("Ganaste :D");
         } else {
             System.out.println("Perdiste :(");

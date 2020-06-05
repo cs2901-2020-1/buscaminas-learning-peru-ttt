@@ -7,6 +7,7 @@ public class Buscamina {
     private int N;
     private int Minas;
     private int Turno = 0;
+    private int casillas_activadas=0;
     private Casillero[][] Matrix;
     Random rand = new Random();
 
@@ -39,8 +40,8 @@ public class Buscamina {
         }
     }
 
-    public boolean casillerosRestantes() {
-        if (Turno == (N*N) - Minas)
+    public boolean Ganador() {
+        if (Minas == (N*N) - casillas_activadas)
             return false;
         return true;
     }
@@ -86,6 +87,26 @@ public class Buscamina {
         }
     }
 
+    public void activarCeros(int x,int y){
+        if(Matrix[x][y].isActivado()  || x<=0 || x>N || y==0 || y>N){
+        }
+        else{
+            Matrix[x][y].setActivado();
+            casillas_activadas++;
+            if ( Matrix[x][y].getMinasCerca()>0){
+                return;
+            }
+            activarCeros(x+1,y);
+            activarCeros(x-1,y);
+            activarCeros(x,y+1);
+            activarCeros(x,y-1);
+            activarCeros(x+1,y+1);
+            activarCeros(x+1,y-1);
+            activarCeros(x-1,y+1);
+            activarCeros(x-1,y-1);
+        }
+    }
+
     public boolean jugar(int x, int y) {
         if (Matrix[x][y].isMina())
             return false;
@@ -93,10 +114,9 @@ public class Buscamina {
         if (Matrix[x][y].isActivado())
             return true;
 
-        Matrix[x][y].setActivado();
 
         //TODO: Activar ceros
-        //activarCeros(x, y);
+        activarCeros(x, y);
 
         print();
         Turno++;

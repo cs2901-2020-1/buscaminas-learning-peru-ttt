@@ -11,10 +11,10 @@
 	<properties>
 		<maven.compiler.source>7</maven.compiler.source>
 		<maven.compiler.target>7</maven.compiler.target>
-	<sonar.projectKey>cs2901-2020-1_buscaminas-learning-peru-ttt</sonar.projectKey>
-  <sonar.organization>cs2901-2020-1</sonar.organization>
-  <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-  <sonar.login>c08b83e99f6d899caf388e1ec78d0687c0d16807</sonar.login>
+		<sonar.projectKey>cs2901-2020-1_buscaminas-learning-peru-ttt</sonar.projectKey>
+  		<sonar.organization>cs2901-2020-1</sonar.organization>
+  		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+  		<sonar.login>c08b83e99f6d899caf388e1ec78d0687c0d16807</sonar.login>
 	</properties>
 
     <build>
